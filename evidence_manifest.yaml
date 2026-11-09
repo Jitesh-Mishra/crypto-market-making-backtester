@@ -1,0 +1,46 @@
+project: crypto-market-making-backtester
+state: PROOF RUN
+environment: cloud VM, 2 vCPU, 7 GB RAM, Python 3.13, numba 0.68, Polars 1.x (see requirements.txt)
+data: Binance USD-M futures BTCUSDT and ETHUSDT, bookTicker + aggTrades, 2024-03-24 to 2024-03-30, data.binance.vision, SHA-256 verified
+protocol: tune on 2024-03-24..27, test once on 2024-03-28..30; quote $1,000; maker fee 0.02%; latency 50 ms; simulated trade-through fills, no queue position
+claims:
+  - id: data_scale
+    text: replays 158,759,121 best bid/ask updates and 19,498,723 aggregated trades (52,248,784 trades, $182B notional) over 7 days, 2 symbols
+    source: reports/data_manifest.csv
+    verified: true
+  - id: inventory_cut
+    text: out-of-sample max inventory $328,065 (S0) vs $3,754 (S1) on BTC (-98.9%); $279,906 vs $3,627 on ETH (-98.7%)
+    source: reports/results_test.csv
+    verified: true
+  - id: risk_cut
+    text: hourly PnL std $536 vs $49 on BTC (-90.9%), $477 vs $41 on ETH (-91.4%); worst hour -$3,407 vs -$271 on BTC
+    source: reports/results_test.csv
+    verified: true
+  - id: net_pnl
+    text: all strategies lose after 0.02% fees out-of-sample; BTC S0 -$1,985, S1 -$2,656, S2 -$5,373; ETH S0 -$3,616, S1 -$3,348, S2 -$4,194
+    source: reports/results_test.csv
+    verified: true
+  - id: train_vs_test
+    text: on train days S0 lost $37,918 vs S1 $11,272 and S2 $6,572 (BTC, in-sample)
+    source: reports/regime.json
+    verified: true
+  - id: carry_r2
+    text: naive quoter hourly PnL R2 0.931 (BTC), 0.947 (ETH) on inventory x price move, 168 hours each
+    source: reports/regime.json
+    verified: true
+  - id: adverse_selection
+    text: 74.4% to 85.2% of fills adversely selected at 5 s; 5 s markouts -0.68 to -0.92 bps
+    source: reports/results_test.csv
+    verified: true
+  - id: latency
+    text: 0 to 200 ms latency, BTC S0 fills 25,018 to 71,415, 5 s markout -0.57 to -0.87 bps (S1 -0.58 to -1.08)
+    source: reports/latency_test.csv
+    verified: true
+  - id: worst_hour
+    text: 2024-03-25 14:00 UTC, BTC +204 bps, S0 short $232,463, S0 -$7,622 vs S1 -$963 vs S2 -$1.5
+    source: reports/regime.json
+    verified: true
+not_claimed:
+  - profitability of any strategy
+  - reduced adverse selection from Avellaneda-Stoikov (it did not)
+  - pandas and SciPy (listed in the brief, not used)

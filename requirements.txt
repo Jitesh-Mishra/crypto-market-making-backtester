@@ -1,0 +1,6 @@
+numpy
+polars
+pyarrow
+numba
+matplotlib
+pytest

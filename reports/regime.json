@@ -1,0 +1,58 @@
+{
+ "BTCUSDT": {
+  "s0_hourly_pnl_r2_vs_inventory_carry": 0.931,
+  "hours": 168,
+  "worst_s0_hour": {
+   "day": "2024-03-25",
+   "hour_utc": 14,
+   "split": "train",
+   "mid_move_bps": 204.0,
+   "s0_inventory_at_start_usd": -232463,
+   "pnl_by_strategy": {
+    "S0 naive": -7621.8,
+    "S1 Avellaneda-Stoikov": -963.4,
+    "S2 AS + live vol + limits": -1.5
+   }
+  },
+  "net_pnl_by_split": {
+   "train": {
+    "S0 naive": -37918,
+    "S1 Avellaneda-Stoikov": -11272,
+    "S2 AS + live vol + limits": -6572
+   },
+   "test": {
+    "S0 naive": -1985,
+    "S1 Avellaneda-Stoikov": -2656,
+    "S2 AS + live vol + limits": -5373
+   }
+  }
+ },
+ "ETHUSDT": {
+  "s0_hourly_pnl_r2_vs_inventory_carry": 0.947,
+  "hours": 168,
+  "worst_s0_hour": {
+   "day": "2024-03-25",
+   "hour_utc": 14,
+   "split": "train",
+   "mid_move_bps": 221.6,
+   "s0_inventory_at_start_usd": -323731,
+   "pnl_by_strategy": {
+    "S0 naive": -9476.5,
+    "S1 Avellaneda-Stoikov": -567.3,
+    "S2 AS + live vol + limits": -79.0
+   }
+  },
+  "net_pnl_by_split": {
+   "train": {
+    "S0 naive": -31056,
+    "S1 Avellaneda-Stoikov": -10338,
+    "S2 AS + live vol + limits": -7219
+   },
+   "test": {
+    "S0 naive": -3616,
+    "S1 Avellaneda-Stoikov": -3348,
+    "S2 AS + live vol + limits": -4194
+   }
+  }
+ }
+}

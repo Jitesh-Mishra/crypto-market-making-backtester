@@ -1,0 +1,51 @@
+{
+ "train_days": [
+  "2024-03-24",
+  "2024-03-25",
+  "2024-03-26",
+  "2024-03-27"
+ ],
+ "test_days": [
+  "2024-03-28",
+  "2024-03-29",
+  "2024-03-30"
+ ],
+ "lot_usd": 1000.0,
+ "maker_fee": 0.0002,
+ "tau_s": 30.0,
+ "latency_ms": 50,
+ "volume_obligation_usd_per_day": 5000000.0,
+ "ewma_halflife_s": 60.0,
+ "train_sigma_bps_per_sqrt_s": {
+  "BTCUSDT": 0.8598673563138974,
+  "ETHUSDT": 0.8809480199825981
+ },
+ "best_params": {
+  "BTCUSDT S0 naive": {
+   "half_bps": 1
+  },
+  "BTCUSDT S1 Avellaneda-Stoikov": {
+   "gamma": 0.1,
+   "kappa": 1.0
+  },
+  "BTCUSDT S2 AS + live vol + limits": {
+   "gamma": 0.3,
+   "kappa": 3.0,
+   "max_lots": 3
+  },
+  "ETHUSDT S0 naive": {
+   "half_bps": 1
+  },
+  "ETHUSDT S1 Avellaneda-Stoikov": {
+   "gamma": 0.1,
+   "kappa": 1.0
+  },
+  "ETHUSDT S2 AS + live vol + limits": {
+   "gamma": 0.1,
+   "kappa": 1.0,
+   "max_lots": 3
+  }
+ },
+ "configs_tuned": 134,
+ "seconds": 287.2
+}

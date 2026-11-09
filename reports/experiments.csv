@@ -1,0 +1,6 @@
+date,stage,approach,config,metric,result,runtime,notes
+2026-11-09,train,grid search S0 S1 S2 per symbol,"S0 half_bps 7 values; S1 gamma x kappa 20; S2 x max_lots 40; latency 50 ms; fee 2 bps",net PnL subject to 5M/day volume,"BTC S0 1bp, S1 g0.1 k1, S2 g0.3 k3 L3; ETH S0 1bp, S1 g0.1 k1, S2 g0.1 k1 L3",about 2 min,reports/tuning_train.csv (134 rows)
+2026-11-09,test,selected configs on Mar 28-30 (run once),same,net PnL; max inventory; markouts,see reports/results_test.csv,seconds,final_test_runs = 1
+2026-11-09,test,latency sensitivity,"0, 50, 200 ms",5 s markout; fills,reports/latency_test.csv,seconds,
+2026-11-09,test,all grid settings (robustness view; not used for selection),134 settings,net and gross PnL vs volume,reports/frontier_test_all_settings.csv,about 2 min,
+2026-11-09,all days,hourly attribution,tuned configs on all 7 days,R2 of S0 hourly PnL on inventory carry,"BTC 0.931, ETH 0.947",about 1 min,reports/regime.json; train days in-sample

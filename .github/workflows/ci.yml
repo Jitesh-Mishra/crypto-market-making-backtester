@@ -1,0 +1,23 @@
+name: CI
+on:
+  push: {branches: [main]}
+  pull_request:
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install -r requirements.txt
+      - run: pytest -q
+      - name: Data source still reachable and checksummed (one small file)
+        run: |
+          python - <<'PY'
+          import hashlib, urllib.request
+          u = "https://data.binance.vision/data/futures/um/daily/aggTrades/ETHUSDT/ETHUSDT-aggTrades-2024-03-30.zip"
+          want = urllib.request.urlopen(u + ".CHECKSUM").read().decode().split()[0]
+          got = hashlib.sha256(urllib.request.urlopen(u).read()).hexdigest()
+          assert got == want, (got, want)
+          print("ok", want[:12])
+          PY

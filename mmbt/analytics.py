@@ -55,6 +55,8 @@ def combine(rows):
     out["hours"] = len(hourly)
     out["hourly_sharpe"] = float(hourly.mean() / hourly.std()) if hourly.std() > 0 else np.nan
     out["pct_hours_positive"] = float(np.mean(hourly > 0))
+    out["hourly_pnl_std"] = float(hourly.std())
+    out["worst_hour_pnl"] = float(hourly.min())
     out["pnl_per_1m_volume"] = out["net_pnl"] / out["volume_usd"] * 1e6 if out["volume_usd"] else np.nan
     tot = out["volume_usd"]
     for h in MARKOUTS_S:
